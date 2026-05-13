@@ -733,45 +733,7 @@ Tất cả các class và method trong `main.py` đều có docstring chi tiết
 | `Enemy`          | 4          | Quái vật: update, follow_path, push_away                                     |
 | `DungeonCrawler` | 12         | Engine chính: init_level, handle_events, update, render, run                 |
 
-### Ví dụ docstring điển hình
-
-```python
-class AStar:
-    """
-    Thuật toán A* (A-Star) tìm đường đi ngắn nhất trên lưới.
-
-    Đặc điểm:
-        - Hàng đợi ưu tiên (Min-Heap) dùng heapq cho Open Set.
-        - Heuristic: Khoảng cách Manhattan.
-        - Chỉ di chuyển 4 hướng (lên, xuống, trái, phải).
-
-    Time Complexity: O(E log V) = O(N log N) với N là số ô lưới.
-    Space Complexity: O(N) với N = số ô lưới.
-    """
-
-    def find_path(self, start, goal, max_nodes=500):
-        """
-        Tìm đường đi từ start đến goal trên lưới.
-
-        Args:
-            start: (x, y) tọa độ bắt đầu (tile).
-            goal: (x, y) tọa độ đích (tile).
-            max_nodes: Giới hạn số node duyệt để tránh treo game.
-
-        Returns:
-            list[tuple]: Đường đi dạng list các (x, y) từ start đến goal.
-                         Trả về [] nếu không tìm thấy đường.
-
-        Time: O(N log N) với N = số ô duyệt.
-        """
-```
-
-### Quy tắc viết docstring trong đồ án
-
-1. **Ngôn ngữ:** Tiếng Việt (cho mô tả chức năng) + tiếng Anh (cho tên biến, type hints)
-2. **Nội dung bắt buộc:** Mô tả chức năng → Args → Returns → Time Complexity
-3. **Time Complexity:** Ghi rõ Big O cho từng method, giải thích ký hiệu
-4. **Không dùng TODO/FIXME trong docstring chính thức**
+**
 
 ---
 
