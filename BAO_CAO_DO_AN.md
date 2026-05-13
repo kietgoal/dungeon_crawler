@@ -642,16 +642,37 @@ dungeon_crawler/
 ### Giao diện người dùng
 
 ![Bản đồ gameplay với Fog of War](image.png)
-*Hình 1: Bản đồ dungeon được sinh tự động — vùng sáng là tầm nhìn người chơi, vùng tối đã khám phá trước đó, vùng đen chưa từng thấy.*
+*Hình 1: Bản đồ dungeon được sinh tự động với Fog of War.*
+**Chú thích:**
+- Vùng sáng: đang trong tầm nhìn người chơi (visible)
+- Vùng tối mờ: đã khám phá trước đó (explored)
+- Vùng đen: chưa từng thấy (hidden)
+- Ô vuông xám: sàn (floor) — có thể di chuyển
+- Ô vuông đậm: tường (wall) — không thể đi qua
 
 ![Debug MST - Kruskal Algorithm](image-1.png)
-*Hình 2: Chế độ Debug F1 — các đường xanh nối giữa tâm các phòng thể hiện các cạnh của Minimum Spanning Tree (Kruskal), đảm bảo tổng chiều dài hành lang ngắn nhất.*
+*Hình 2: Chế độ Debug F1 — trực quan hoá Minimum Spanning Tree.*
+**Chú thích:**
+- Đường xanh: cạnh của MST (Kruskal) nối giữa các phòng
+- Đường xanh đậm hơn: cạnh loop được thêm lại (10%) tạo đường vòng
+- Tâm phòng: đỉnh (vertex) của đồ thị
+- Ý nghĩa: đảm bảo tổng chiều dài hành lang ngắn nhất
 
 ![Debug BSP - Binary Space Partitioning](image-2.png)
-*Hình 3: Chế độ Debug F2 — các khung vàng thể hiện các node của cây BSP (Binary Space Partitioning) phân vùng bản đồ thành các phòng hình chữ nhật không chồng lấn.*
+*Hình 3: Chế độ Debug F2 — trực quan hoá cây BSP.*
+**Chú thích:**
+- Khung vàng: ranh giới các node của cây BSP
+- Mỗi hình chữ nhật vàng: một vùng không gian do node quản lý
+- Node lá: chứa một căn phòng ngẫu nhiên bên trong
+- Ý nghĩa: phân vùng bản đồ thành các phòng không chồng lấn
 
 ![Debug A* Pathfinding](image-3.png)
-*Hình 4: Chế độ Debug F3 — các đường hồng là đường đi A* từ quái vật đến người chơi, sử dụng hàng đợi ưu tiên (Min-Heap) và heuristic Manhattan.*
+*Hình 4: Chế độ Debug F3 — trực quan hoá đường đi A\* của quái vật.*
+**Chú thích:**
+- Đường hồng: đường đi A* từ quái vật đến người chơi
+- Quái vật (ghost): dùng A* để tìm đường ngắn nhất
+- Chấm hồng: các node đã duyệt trong quá trình tìm kiếm
+- Heuristic: khoảng cách Manhattan — admissible và consistent
 
 ### Hướng dẫn demo nhanh
 

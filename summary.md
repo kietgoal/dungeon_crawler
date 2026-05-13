@@ -50,16 +50,33 @@ Mỗi khi người chơi bắt đầu một màn chơi mới, **100% bản đồ
 ### Hình ảnh minh hoạ
 
 ![Bản đồ gameplay với Fog of War](image.png)
-*Hình 1: Bản đồ dungeon được sinh tự động - vùng sáng là tầm nhìn, vùng tối đã khám phá, vùng đen chưa từng thấy.*
+*Hình 1: Bản đồ dungeon được sinh tự động với Fog of War.*
+**Chú thích:**
+- Vùng sáng: đang trong tầm nhìn người chơi
+- Vùng tối mờ: đã khám phá trước đó
+- Vùng đen: chưa từng thấy
+- Ô xám: sàn (floor), ô đậm: tường (wall)
 
 ![Debug MST - Kruskal](image-1.png)
-*Hình 2: Chế độ Debug F1 - các đường xanh nối tâm phòng là cạnh của Minimum Spanning Tree (Kruskal).*
+*Hình 2: Chế độ Debug F1 — trực quan hoá Minimum Spanning Tree.*
+**Chú thích:**
+- Đường xanh: cạnh MST nối tâm các phòng
+- Tâm phòng: đỉnh của đồ thị
+- Ý nghĩa: tổng chiều dài hành lang ngắn nhất
 
 ![Debug BSP Tree](image-2.png)
-*Hình 3: Chế độ Debug F2 - các khung vàng thể hiện các node của cây BSP phân vùng bản đồ.*
+*Hình 3: Chế độ Debug F2 — trực quan hoá cây BSP.*
+**Chú thích:**
+- Khung vàng: ranh giới các node BSP
+- Mỗi node lá: chứa một căn phòng
+- Ý nghĩa: phân vùng bản đồ không chồng lấn
 
 ![Debug A* Pathfinding](image-3.png)
-*Hình 4: Chế độ Debug F3 - các đường hồng là đường đi A* của quái vật đến người chơi.*
+*Hình 4: Chế độ Debug F3 — trực quan hoá đường đi A\*.*
+**Chú thích:**
+- Đường hồng: đường đi A* từ quái vật đến người chơi
+- Chấm hồng: các node đã duyệt
+- Heuristic: khoảng cách Manhattan
 
 ---
 
