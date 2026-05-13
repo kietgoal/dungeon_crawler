@@ -47,6 +47,20 @@ Mỗi khi người chơi bắt đầu một màn chơi mới, **100% bản đồ
 | `F2` | Vẽ ranh giới các node BSP (hình chữ nhật vàng) |
 | `F3` | Vẽ đường đi A* của quái vật (đường hồng) |
 
+### Hình ảnh minh hoạ
+
+![Bản đồ gameplay với Fog of War](image.png)
+*Hình 1: Bản đồ dungeon được sinh tự động - vùng sáng là tầm nhìn, vùng tối đã khám phá, vùng đen chưa từng thấy.*
+
+![Debug MST - Kruskal](image-1.png)
+*Hình 2: Chế độ Debug F1 - các đường xanh nối tâm phòng là cạnh của Minimum Spanning Tree (Kruskal).*
+
+![Debug BSP Tree](image-2.png)
+*Hình 3: Chế độ Debug F2 - các khung vàng thể hiện các node của cây BSP phân vùng bản đồ.*
+
+![Debug A* Pathfinding](image-3.png)
+*Hình 4: Chế độ Debug F3 - các đường hồng là đường đi A* của quái vật đến người chơi.*
+
 ---
 
 ## Gameplay

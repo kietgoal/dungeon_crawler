@@ -23,16 +23,16 @@
 
 **Các chức năng chính của ứng dụng:**
 
-| Chức năng | Mô tả |
-|-----------|-------|
-| **Sinh bản đồ tự động** | Sử dụng BSP Tree để tạo phòng, Kruskal MST để nối hành lang |
-| **Điều khiển người chơi** | WASD / Phím mũi tên để di chuyển trong mê cung |
-| **Quái vật AI** | Enemy dùng A* Pathfinding để truy đuổi người chơi |
+| Chức năng                          | Mô tả                                                              |
+| ---------------------------------- | ------------------------------------------------------------------ |
+| **Sinh bản đồ tự động**            | Sử dụng BSP Tree để tạo phòng, Kruskal MST để nối hành lang        |
+| **Điều khiển người chơi**          | WASD / Phím mũi tên để di chuyển trong mê cung                     |
+| **Quái vật AI**                    | Enemy dùng A* Pathfinding để truy đuổi người chơi                  |
 | **Hệ thống tầm nhìn (Fog of War)** | BFS kết hợp Raycasting (Bresenham) — vùng tối dần theo khoảng cách |
-| **Hệ thống máu & mạng** | 3 máu, bất tử 1 giây sau khi bị đòn |
-| **Cầu thang qua tầng** | Đi đến cầu thang để sang tầng mới với bản đồ khó hơn |
-| **Chế độ Debug trực quan** | F1: vẽ MST, F2: vẽ BSP, F3: vẽ đường đi A* |
-| **Permadeath** | Chết là mất hết — nhấn R để chơi lại |
+| **Hệ thống máu & mạng**            | 3 máu, bất tử 1 giây sau khi bị đòn                                |
+| **Cầu thang qua tầng**             | Đi đến cầu thang để sang tầng mới với bản đồ khó hơn               |
+| **Chế độ Debug trực quan**         | F1: vẽ MST, F2: vẽ BSP, F3: vẽ đường đi A*                         |
+| **Permadeath**                     | Chết là mất hết — nhấn R để chơi lại                               |
 
 **Công nghệ sử dụng:**
 
@@ -88,13 +88,13 @@ class BSPNode:
 
 **WHY — Tại sao chọn BSP?**
 
-| Tiêu chí | Lý do |
-|----------|-------|
-| **Tự nhiên** | Phân vùng không gian kiểu "phòng trong phòng" tạo bố cục giống dungeon thật |
-| **Không chồng lấn** | BSP đảm bảo các phòng không bao giờ đè lên nhau (khác với sinh ngẫu nhiên thuần túy) |
-| **Kiểm soát kích thước** | Có thể dễ dàng điều chỉnh độ rộng/hẹp của phòng qua min_size |
-| **Cây tự nhiên** | Cấu trúc cây giúp dễ dàng debug, duyệt, và mở rộng (thêm hành lang, vật phẩm...) |
-| **Nhanh** | O(n) với n ~ 100 nodes — chạy ngay lập tức |
+| Tiêu chí                 | Lý do                                                                                |
+| ------------------------ | ------------------------------------------------------------------------------------ |
+| **Tự nhiên**             | Phân vùng không gian kiểu "phòng trong phòng" tạo bố cục giống dungeon thật          |
+| **Không chồng lấn**      | BSP đảm bảo các phòng không bao giờ đè lên nhau (khác với sinh ngẫu nhiên thuần túy) |
+| **Kiểm soát kích thước** | Có thể dễ dàng điều chỉnh độ rộng/hẹp của phòng qua min_size                         |
+| **Cây tự nhiên**         | Cấu trúc cây giúp dễ dàng debug, duyệt, và mở rộng (thêm hành lang, vật phẩm...)     |
+| **Nhanh**                | O(n) với n ~ 100 nodes — chạy ngay lập tức                                           |
 
 **Phân tích so với giải pháp khác:**
 - *Cellular Automata*: Tạo hang động tự nhiên hơn nhưng khó kiểm soát kích thước phòng, dễ tạo đường đi không mong muốn.
@@ -134,12 +134,12 @@ for i in range(V):
 
 **WHY — Tại sao chọn Complete Graph?**
 
-| Tiêu chí | Lý do |
-|----------|-------|
-| **Đầy đủ thông tin** | Chỉ có đồ thị đầy đủ mới cho phép Kruskal chọn ra V-1 cạnh tốt nhất |
-| **MST cần so sánh** | Thuật toán Kruskal cần xem xét *tất cả* các cặp để tìm cạnh ngắn nhất |
-| **Đơn giản** | Implement rõ ràng, dễ hiểu, dễ debug |
-| **Số phòng nhỏ** | V ≤ 30 → V² ≤ 900 → hoàn toàn chấp nhận được về hiệu năng |
+| Tiêu chí             | Lý do                                                                 |
+| -------------------- | --------------------------------------------------------------------- |
+| **Đầy đủ thông tin** | Chỉ có đồ thị đầy đủ mới cho phép Kruskal chọn ra V-1 cạnh tốt nhất   |
+| **MST cần so sánh**  | Thuật toán Kruskal cần xem xét *tất cả* các cặp để tìm cạnh ngắn nhất |
+| **Đơn giản**         | Implement rõ ràng, dễ hiểu, dễ debug                                  |
+| **Số phòng nhỏ**     | V ≤ 30 → V² ≤ 900 → hoàn toàn chấp nhận được về hiệu năng             |
 
 **Phân tích so với giải pháp khác:**
 - *Đồ thị thưa (Sparse Graph)*: Tiết kiệm bộ nhớ hơn nhưng Kruskal không thể đảm bảo tìm được MST tối ưu.
@@ -166,18 +166,18 @@ class UnionFind:
 
 **WHY — Tại sao chọn Union-Find?**
 
-| Tiêu chí | Lý do |
-|----------|-------|
-| **Tốc độ** | α(n) ≤ 5 với mọi n trong thực tế → runtime gần như O(1) |
+| Tiêu chí                | Lý do                                                                                |
+| ----------------------- | ------------------------------------------------------------------------------------ |
+| **Tốc độ**              | α(n) ≤ 5 với mọi n trong thực tế → runtime gần như O(1)                              |
 | **Phát hiện chu trình** | Là công cụ chuẩn trong Kruskal: nếu find(v1) == find(v2) thì thêm cạnh tạo chu trình |
-| **Kết hợp nhanh** | union() chỉ mất O(α(n)) — cực kỳ hiệu quả |
+| **Kết hợp nhanh**       | union() chỉ mất O(α(n)) — cực kỳ hiệu quả                                            |
 
 **Path Compression vs Union by Rank:**
 
-| Kỹ thuật | Tác dụng | Minh họa |
-|----------|----------|----------|
+| Kỹ thuật             | Tác dụng                                                              | Minh họa                                     |
+| -------------------- | --------------------------------------------------------------------- | -------------------------------------------- |
 | **Path Compression** | Trong find(), gán trực tiếp parent của mọi node trên đường đi về root | `self.parent[x] = self.find(self.parent[x])` |
-| **Union by Rank** | Gắn cây có rank thấp vào cây có rank cao — giữ cây cân bằng | So sánh rank[rx] và rank[ry] |
+| **Union by Rank**    | Gắn cây có rank thấp vào cây có rank cao — giữ cây cân bằng           | So sánh rank[rx] và rank[ry]                 |
 
 Hai kỹ thuật này kết hợp đảm bảo độ phức tạp O(α(n)) — một trong những kết quả kinh điển nhất của khoa học máy tính.
 
@@ -218,20 +218,20 @@ Sau khi tìm MST, 10% số cạnh bị loại được thêm lại ngẫu nhiên
 
 **WHY — Tại sao chọn Kruskal?**
 
-| Tiêu chí | Lý do |
-|----------|-------|
-| **Tối ưu toàn cục** | Đảm bảo tổng chiều dài hành lang là ngắn nhất |
-| **Không chu trình** | Đảm bảo mọi phòng đều được kết nối nhưng không có đường thừa |
-| **Kết hợp Union-Find** | Dễ implement, dễ hiểu, dễ debug |
-| **Có thể mở rộng** | Thêm loop dễ dàng — chỉ cần thêm lại cạnh loại bỏ |
+| Tiêu chí               | Lý do                                                        |
+| ---------------------- | ------------------------------------------------------------ |
+| **Tối ưu toàn cục**    | Đảm bảo tổng chiều dài hành lang là ngắn nhất                |
+| **Không chu trình**    | Đảm bảo mọi phòng đều được kết nối nhưng không có đường thừa |
+| **Kết hợp Union-Find** | Dễ implement, dễ hiểu, dễ debug                              |
+| **Có thể mở rộng**     | Thêm loop dễ dàng — chỉ cần thêm lại cạnh loại bỏ            |
 
 **Phân tích so với giải pháp khác:**
 
-| Thuật toán | Ưu điểm | Nhược điểm | Kết luận |
-|-----------|---------|------------|----------|
-| **Kruskal** | O(E log V), đơn giản, song song hóa được | Cần sắp xếp E cạnh | **Chọn** — phù hợp với đồ thị đầy đủ E = V² |
-| **Prim** | O(E log V) dùng heap, hiệu quả với đồ thị dày | Khó song song, phức tạp hơn một chút | Cũng tốt nhưng Kruskal trực quan hơn |
-| **Borůvka** | O(E log V), song song tốt | Phức tạp nhất | Không cần thiết |
+| Thuật toán  | Ưu điểm                                       | Nhược điểm                           | Kết luận                                    |
+| ----------- | --------------------------------------------- | ------------------------------------ | ------------------------------------------- |
+| **Kruskal** | O(E log V), đơn giản, song song hóa được      | Cần sắp xếp E cạnh                   | **Chọn** — phù hợp với đồ thị đầy đủ E = V² |
+| **Prim**    | O(E log V) dùng heap, hiệu quả với đồ thị dày | Khó song song, phức tạp hơn một chút | Cũng tốt nhưng Kruskal trực quan hơn        |
+| **Borůvka** | O(E log V), song song tốt                     | Phức tạp nhất                        | Không cần thiết                             |
 
 ---
 
@@ -271,33 +271,33 @@ h(n) = |x1 - x2| + |y1 - y2|
 
 **Tối ưu hóa trong đồ án:**
 
-| Tối ưu | Chi tiết | Tác dụng |
-|--------|----------|----------|
-| **Giới hạn node** | max_nodes = 500 | Tránh treo game nếu không tìm thấy đường |
-| **Tính lại theo thời gian** | Mỗi 150ms (ENEMY_RECALC_INTERVAL) | Giảm CPU — không tính A* mỗi frame |
-| **Tính lại theo khoảng cách** | Khi player di chuyển > 2 tiles | Đảm bảo đường đi luôn "fresh" |
-| **Chọn Chaser** | Chỉ 3 enemy gần nhất dùng A* | Tiết kiệm CPU — các enemy xa đi lang thang |
+| Tối ưu                        | Chi tiết                          | Tác dụng                                   |
+| ----------------------------- | --------------------------------- | ------------------------------------------ |
+| **Giới hạn node**             | max_nodes = 500                   | Tránh treo game nếu không tìm thấy đường   |
+| **Tính lại theo thời gian**   | Mỗi 150ms (ENEMY_RECALC_INTERVAL) | Giảm CPU — không tính A* mỗi frame         |
+| **Tính lại theo khoảng cách** | Khi player di chuyển > 2 tiles    | Đảm bảo đường đi luôn "fresh"              |
+| **Chọn Chaser**               | Chỉ 3 enemy gần nhất dùng A*      | Tiết kiệm CPU — các enemy xa đi lang thang |
 
 **Độ phức tạp:** O(N log N) với N là số ô lưới được duyệt.
 
 **WHY — Tại sao chọn A*?**
 
-| Tiêu chí | Lý do |
-|----------|-------|
-| **Tối ưu (Optimal)** | A* luôn tìm đường ngắn nhất nếu heuristic admissible |
-| **Hiệu quả** | Nhanh hơn Dijkstra (không có heuristic) và BFS (không có trọng số) |
-| **Heuristic hướng dẫn** | Manhattan giúp A* "đi đúng hướng" — ít duyệt node hơn |
-| **Phù hợp lưới** | A* hoạt động tốt trên grid-based map |
+| Tiêu chí                | Lý do                                                              |
+| ----------------------- | ------------------------------------------------------------------ |
+| **Tối ưu (Optimal)**    | A* luôn tìm đường ngắn nhất nếu heuristic admissible               |
+| **Hiệu quả**            | Nhanh hơn Dijkstra (không có heuristic) và BFS (không có trọng số) |
+| **Heuristic hướng dẫn** | Manhattan giúp A* "đi đúng hướng" — ít duyệt node hơn              |
+| **Phù hợp lưới**        | A* hoạt động tốt trên grid-based map                               |
 
 **So sánh với các thuật toán tìm đường khác:**
 
-| Thuật toán | Heuristic? | Tối ưu? | Độ phức tạp | Phù hợp? |
-|-----------|-----------|---------|-------------|----------|
-| **A*** | Có | Có | O(N log N) | **Chọn** |
-| **Dijkstra** | Không (h=0) | Có | O(N log N) — chậm hơn A* | Không heuristic → lãng phí |
-| **BFS** | Không | Có (lưới đều) | O(N) — nhanh nhất | Chỉ dùng cho Fog of War |
-| **Greedy Best-First** | Có | Không | O(N) — rất nhanh | Có thể bỏ qua đường tối ưu |
-| **Jump Point Search** | Có | Có | O(N) | Phức tạp, yêu cầu grid đặc biệt |
+| Thuật toán            | Heuristic?  | Tối ưu?       | Độ phức tạp              | Phù hợp?                        |
+| --------------------- | ----------- | ------------- | ------------------------ | ------------------------------- |
+| **A***                | Có          | Có            | O(N log N)               | **Chọn**                        |
+| **Dijkstra**          | Không (h=0) | Có            | O(N log N) — chậm hơn A* | Không heuristic → lãng phí      |
+| **BFS**               | Không       | Có (lưới đều) | O(N) — nhanh nhất        | Chỉ dùng cho Fog of War         |
+| **Greedy Best-First** | Có          | Không         | O(N) — rất nhanh         | Có thể bỏ qua đường tối ưu      |
+| **Jump Point Search** | Có          | Có            | O(N)                     | Phức tạp, yêu cầu grid đặc biệt |
 
 ---
 
@@ -312,11 +312,11 @@ Fog of War (FOW) là hệ thống mô phỏng tầm nhìn hạn chế của ngư
 
 **Ba trạng thái của mỗi ô:**
 
-| Trạng thái | Màu | Ý nghĩa |
-|-----------|-----|---------|
-| **Visible** | Trong suốt | Đang trong tầm nhìn — vẽ bình thường |
-| **Explored** | Tối mờ (RGBA: 0,0,0,160) | Đã thấy trước đây — vẽ mờ |
-| **Hidden** | Đen hoàn toàn (RGBA: 0,0,0,255) | Chưa từng thấy — không vẽ gì cả |
+| Trạng thái   | Màu                             | Ý nghĩa                              |
+| ------------ | ------------------------------- | ------------------------------------ |
+| **Visible**  | Trong suốt                      | Đang trong tầm nhìn — vẽ bình thường |
+| **Explored** | Tối mờ (RGBA: 0,0,0,160)        | Đã thấy trước đây — vẽ mờ            |
+| **Hidden**   | Đen hoàn toàn (RGBA: 0,0,0,255) | Chưa từng thấy — không vẽ gì cả      |
 
 **BFS — Cơ chế loang:**
 
@@ -356,21 +356,21 @@ while True:
 
 **WHY — Tại sao chọn BFS + Raycasting?**
 
-| Tiêu chí | Lý do |
-|----------|-------|
-| **Chính xác** | Bresenham kiểm tra tia chính xác đến từng pixel — không bỏ sót tường |
-| **Hiệu quả** | Integer arithmetic — không floating point → rất nhanh |
-| **Không precompute** | Tính toán real-time mỗi frame — không cần bộ nhớ đệm |
-| **BFS tự nhiên** | Loang từ player, ưu tiên ô gần trước — đúng logic tầm nhìn |
+| Tiêu chí             | Lý do                                                                |
+| -------------------- | -------------------------------------------------------------------- |
+| **Chính xác**        | Bresenham kiểm tra tia chính xác đến từng pixel — không bỏ sót tường |
+| **Hiệu quả**         | Integer arithmetic — không floating point → rất nhanh                |
+| **Không precompute** | Tính toán real-time mỗi frame — không cần bộ nhớ đệm                 |
+| **BFS tự nhiên**     | Loang từ player, ưu tiên ô gần trước — đúng logic tầm nhìn           |
 
 **So sánh với giải pháp khác:**
 
-| Giải pháp | Ưu điểm | Nhược điểm |
-|-----------|---------|------------|
-| **BFS + Raycast** (chọn) | Chính xác, đơn giản, nhanh | O(R³) lý thuyết |
-| **Pre-computed Shadow Volume** | Rất nhanh (O(R²)) | Phức tạp, cần precompute |
-| **Recursive Shadowcasting** | Rất nhanh | Sai sót với tường mỏng |
-| **Simple LOS check** | Cực nhanh (O(R)) | Thiếu chính xác, sót ô |
+| Giải pháp                      | Ưu điểm                    | Nhược điểm               |
+| ------------------------------ | -------------------------- | ------------------------ |
+| **BFS + Raycast** (chọn)       | Chính xác, đơn giản, nhanh | O(R³) lý thuyết          |
+| **Pre-computed Shadow Volume** | Rất nhanh (O(R²))          | Phức tạp, cần precompute |
+| **Recursive Shadowcasting**    | Rất nhanh                  | Sai sót với tường mỏng   |
+| **Simple LOS check**           | Cực nhanh (O(R))           | Thiếu chính xác, sót ô   |
 
 ---
 
@@ -391,11 +391,11 @@ heapq.heappop(heap)                               # O(log N)
 
 **WHY — Tại sao chọn heap?**
 
-| Lý do | Giải thích |
-|-------|------------|
-| **Tốc độ** | push/pop O(log N) — nhanh hơn nhiều so với sorted list O(N) |
-| **Thư viện chuẩn** | heapq là module chuẩn của Python — không cần cài đặt thêm |
-| **Đơn giản** | A* cần pop node có f(n) nhỏ nhất → Min-Heap là lựa chọn tự nhiên |
+| Lý do              | Giải thích                                                       |
+| ------------------ | ---------------------------------------------------------------- |
+| **Tốc độ**         | push/pop O(log N) — nhanh hơn nhiều so với sorted list O(N)      |
+| **Thư viện chuẩn** | heapq là module chuẩn của Python — không cần cài đặt thêm        |
+| **Đơn giản**       | A* cần pop node có f(n) nhỏ nhất → Min-Heap là lựa chọn tự nhiên |
 
 **So sánh:**
 - *Sorted List*: insert O(N) — quá chậm với grid lớn.
@@ -406,14 +406,14 @@ heapq.heappop(heap)                               # O(log N)
 
 #### Tổng kết độ phức tạp toàn hệ thống
 
-| Giai đoạn | Thuật toán / CTDL | Độ phức tạp | Thời gian thực tế |
-|-----------|-------------------|-------------|-------------------|
-| Sinh phòng | BSP Tree | O(n) | < 1ms |
-| Xây đồ thị | Complete Graph | O(V²) | < 1ms |
-| Hành lang | Kruskal MST + Union-Find | O(E log V) | < 1ms |
-| Tìm đường | A* + Min-Heap | O(N log N) | ~1–5ms |
-| Tầm nhìn | BFS + Raycasting (Bresenham) | O(R³) | < 1ms |
-| **Toàn bộ pipeline** | BSP → Graph → MST → A* → FOW | **O(V² + N log N)** | **~5–10ms** |
+| Giai đoạn            | Thuật toán / CTDL            | Độ phức tạp         | Thời gian thực tế |
+| -------------------- | ---------------------------- | ------------------- | ----------------- |
+| Sinh phòng           | BSP Tree                     | O(n)                | < 1ms             |
+| Xây đồ thị           | Complete Graph               | O(V²)               | < 1ms             |
+| Hành lang            | Kruskal MST + Union-Find     | O(E log V)          | < 1ms             |
+| Tìm đường            | A* + Min-Heap                | O(N log N)          | ~1–5ms            |
+| Tầm nhìn             | BFS + Raycasting (Bresenham) | O(R³)               | < 1ms             |
+| **Toàn bộ pipeline** | BSP → Graph → MST → A* → FOW | **O(V² + N log N)** | **~5–10ms**       |
 
 ---
 
@@ -427,14 +427,14 @@ heapq.heappop(heap)                               # O(log N)
 
 **Mục tiêu:** Nắm vững các thuật toán, thiết kế kiến trúc và xây dựng pipeline sinh bản đồ.
 
-| Ngày | Công việc | Kết quả |
-|------|-----------|---------|
-| **1–2** | Nghiên cứu BSP Tree: đọc tài liệu, phân tích cách phân vùng không gian. | Hiểu rõ BSP, viết prototype BSPNode và BSPTree. |
-| **2–3** | Xây dựng module đồ thị (Graph) và Disjoint Set (Union-Find). | Hoàn thiện Graph (add_vertex, add_edge, build_complete_from_rooms) và UnionFind (find path compression, union by rank). |
-| **3–4** | Cài đặt Kruskal MST: sắp xếp cạnh, kiểm tra chu trình, sinh hành lang. | MST hoạt động, có thể kết nối các phòng bằng đường L-shaped corridor. |
-| **4–5** | Tích hợp BSP → Graph → Kruskal → corridor thành pipeline DungeonMap. | Pipeline hoàn chỉnh: chỉ cần gọi `dungeon.generate()` là có bản đồ. |
-| **5–6** | Xử lý ngã cụt (dead end removal): lặp xoá ô sàn chỉ có 1 lối vào. | Bản đồ sạch hơn, không còn ngõ cụt vô nghĩa. |
-| **6–7** | Thiết lập Pygame: cửa sổ, vòng lặp game, vẽ bản đồ (map rendering). | Game hiển thị được bản đồ sinh tự động. |
+| Ngày    | Công việc                                                               | Kết quả                                                                                                                 |
+| ------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| **1–2** | Nghiên cứu BSP Tree: đọc tài liệu, phân tích cách phân vùng không gian. | Hiểu rõ BSP, viết prototype BSPNode và BSPTree.                                                                         |
+| **2–3** | Xây dựng module đồ thị (Graph) và Disjoint Set (Union-Find).            | Hoàn thiện Graph (add_vertex, add_edge, build_complete_from_rooms) và UnionFind (find path compression, union by rank). |
+| **3–4** | Cài đặt Kruskal MST: sắp xếp cạnh, kiểm tra chu trình, sinh hành lang.  | MST hoạt động, có thể kết nối các phòng bằng đường L-shaped corridor.                                                   |
+| **4–5** | Tích hợp BSP → Graph → Kruskal → corridor thành pipeline DungeonMap.    | Pipeline hoàn chỉnh: chỉ cần gọi `dungeon.generate()` là có bản đồ.                                                     |
+| **5–6** | Xử lý ngã cụt (dead end removal): lặp xoá ô sàn chỉ có 1 lối vào.       | Bản đồ sạch hơn, không còn ngõ cụt vô nghĩa.                                                                            |
+| **6–7** | Thiết lập Pygame: cửa sổ, vòng lặp game, vẽ bản đồ (map rendering).     | Game hiển thị được bản đồ sinh tự động.                                                                                 |
 
 **Kết quả tuần 1:**
 - Pipeline sinh bản đồ hoàn chỉnh: BSP → Graph → Kruskal MST → Corridor
@@ -452,12 +452,12 @@ heapq.heappop(heap)                               # O(log N)
 
 **Mục tiêu:** Phát triển các thực thể trong game và thuật toán tìm đường.
 
-| Ngày | Công việc | Kết quả |
-|------|-----------|---------|
-| **8–9** | Xây dựng Player: di chuyển WASD/Arrow, kiểm tra va chạm tường (slide along wall). | Player di chuyển mượt trong dungeon. |
-| **9–11** | Cài đặt A* Pathfinding: Min-Heap, Manhattan heuristic, reconstruct path. | A* tìm đường chính xác, hiệu quả. Kiểm thử trên nhiều bản đồ khác nhau. |
-| **11–13** | Xây dựng Enemy AI: chase mode (dùng A*), wander mode (lang thang ngẫu nhiên), chuyển đổi giữa 2 chế độ. | Enemy truy đuổi người chơi thông minh, biết tìm đường vòng. |
-| **13–14** | Tối ưu Enemy AI: chỉ tính A* mỗi 150ms, chọn 3 enemy gần nhất làm chaser, enemy xa đi lang thang. | Game chạy 60 FPS ổn định với 5 enemy. |
+| Ngày      | Công việc                                                                                               | Kết quả                                                                 |
+| --------- | ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| **8–9**   | Xây dựng Player: di chuyển WASD/Arrow, kiểm tra va chạm tường (slide along wall).                       | Player di chuyển mượt trong dungeon.                                    |
+| **9–11**  | Cài đặt A* Pathfinding: Min-Heap, Manhattan heuristic, reconstruct path.                                | A* tìm đường chính xác, hiệu quả. Kiểm thử trên nhiều bản đồ khác nhau. |
+| **11–13** | Xây dựng Enemy AI: chase mode (dùng A*), wander mode (lang thang ngẫu nhiên), chuyển đổi giữa 2 chế độ. | Enemy truy đuổi người chơi thông minh, biết tìm đường vòng.             |
+| **13–14** | Tối ưu Enemy AI: chỉ tính A* mỗi 150ms, chọn 3 enemy gần nhất làm chaser, enemy xa đi lang thang.       | Game chạy 60 FPS ổn định với 5 enemy.                                   |
 
 **Kết quả tuần 2:**
 - Player di chuyển mượt, có slide along wall
@@ -475,12 +475,12 @@ heapq.heappop(heap)                               # O(log N)
 
 **Mục tiêu:** Xây dựng hệ thống tầm nhìn, chiến đấu và các cơ chế gameplay cốt lõi.
 
-| Ngày | Công việc | Kết quả |
-|------|-----------|---------|
+| Ngày      | Công việc                                                                                                         | Kết quả                                                                |
+| --------- | ----------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | **15–16** | Hệ thống Fog of War: BFS loang từ player, kiểm tra tia nhìn bằng Bresenham, 3 trạng thái visible/explored/hidden. | Fog of War hoạt động chính xác, không xuyên tường, có hiệu ứng mờ dần. |
-| **16–17** | Xử lý va chạm player-enemy (pixel-based collision), hệ thống máu (3 HP), bất tử (invincibility frames 1s). | Chiến đấu hoạt động ổn định, có feedback khi bị đòn. |
-| **17–18** | Cầu thang (staircase) và hệ thống tầng (floor progression): mỗi tầng sinh bản đồ mới, tăng số enemy. | Player có thể đi xuống tầng sâu hơn, độ khó tăng dần. |
-| **18–19** | Va chạm enemy-enemy: một enemy bị đẩy đi hướng khác khi va chạm, tránh chồng lên nhau. | Enemy không còn chồng lên nhau, di chuyển tự nhiên hơn. |
+| **16–17** | Xử lý va chạm player-enemy (pixel-based collision), hệ thống máu (3 HP), bất tử (invincibility frames 1s).        | Chiến đấu hoạt động ổn định, có feedback khi bị đòn.                   |
+| **17–18** | Cầu thang (staircase) và hệ thống tầng (floor progression): mỗi tầng sinh bản đồ mới, tăng số enemy.              | Player có thể đi xuống tầng sâu hơn, độ khó tăng dần.                  |
+| **18–19** | Va chạm enemy-enemy: một enemy bị đẩy đi hướng khác khi va chạm, tránh chồng lên nhau.                            | Enemy không còn chồng lên nhau, di chuyển tự nhiên hơn.                |
 
 **Kết quả tuần 3:**
 - Fog of War chính xác với 3 trạng thái
@@ -499,14 +499,14 @@ heapq.heappop(heap)                               # O(log N)
 
 **Mục tiêu:** Thêm công cụ debug trực quan, giao diện người dùng, sprite đồ họa và hoàn thiện tài liệu.
 
-| Ngày | Công việc | Kết quả |
-|------|-----------|---------|
-| **20–21** | Chế độ Debug Visualization: F1 (vẽ MST — đường xanh), F2 (vẽ BSP — khung vàng), F3 (vẽ A* path — đường hồng). | Có thể trực quan hoá tất cả thuật toán trong game. |
-| **21–22** | UI: thanh máu (health bar), số tầng (floor counter), hướng dẫn phím tắt, debug status bar. | Giao diện người dùng đầy đủ, rõ ràng. |
-| **22–23** | Thiết kế và tích hợp sprite: nhân vật chính (4 hướng front/back/left/right), ghost enemy (4 hướng). | Game có đồ họa đẹp hơn, không còn vẽ hình tròn đơn thuần. |
-| **23–24** | Màn hình Game Over, nhấn R chơi lại, kiểm tra chuyển tiếp giữa các tầng. | Game loop hoàn chỉnh. |
-| **24–25** | Kiểm thử tổng thể: test trên nhiều bản đồ, kiểm tra edge cases, tối ưu hiệu năng. | Bug fix, game chạy ổn định 60 FPS. |
-| **25–28** | Viết summary.md, docstring cho toàn bộ code, viết báo cáo đồ án. | Tài liệu đầy đủ, docstring chi tiết cho mọi class/method. |
+| Ngày      | Công việc                                                                                                     | Kết quả                                                   |
+| --------- | ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| **20–21** | Chế độ Debug Visualization: F1 (vẽ MST — đường xanh), F2 (vẽ BSP — khung vàng), F3 (vẽ A* path — đường hồng). | Có thể trực quan hoá tất cả thuật toán trong game.        |
+| **21–22** | UI: thanh máu (health bar), số tầng (floor counter), hướng dẫn phím tắt, debug status bar.                    | Giao diện người dùng đầy đủ, rõ ràng.                     |
+| **22–23** | Thiết kế và tích hợp sprite: nhân vật chính (4 hướng front/back/left/right), ghost enemy (4 hướng).           | Game có đồ họa đẹp hơn, không còn vẽ hình tròn đơn thuần. |
+| **23–24** | Màn hình Game Over, nhấn R chơi lại, kiểm tra chuyển tiếp giữa các tầng.                                      | Game loop hoàn chỉnh.                                     |
+| **24–25** | Kiểm thử tổng thể: test trên nhiều bản đồ, kiểm tra edge cases, tối ưu hiệu năng.                             | Bug fix, game chạy ổn định 60 FPS.                        |
+| **25–28** | Viết summary.md, docstring cho toàn bộ code, viết báo cáo đồ án.                                              | Tài liệu đầy đủ, docstring chi tiết cho mọi class/method. |
 
 **Kết quả tuần 4:**
 - Debug Visualization (F1, F2, F3)
@@ -526,41 +526,41 @@ heapq.heappop(heap)                               # O(log N)
 
 ### 3a. Kết quả định tính
 
-| Tiêu chí | Đánh giá |
-|----------|----------|
-| **Sinh bản đồ tự động** | 100% bản đồ do máy tính sinh — không bản đồ nào giống nhau |
-| **Đa dạng thuật toán** | 6+ CTDL & giải thuật: BSP Tree, Graph, Union-Find, Kruskal MST, A*, BFS, Raycasting, Min-Heap |
-| **Enemy AI** | Quái vật truy đuổi bằng A*, chuyển đổi giữa chase/wander mode |
-| **Fog of War** | Hệ thống tầm nhìn 3 trạng thái (visible/explored/hidden), không xuyên tường |
-| **Debug Visualization** | 3 chế độ xem trực quan thuật toán (F1, F2, F3) |
-| **Gameplay** | Di chuyển, chiến đấu, máu, bất tử, cầu thang qua tầng, permadeath |
-| **Hiệu năng** | 60 FPS ổn định trên phần cứng trung bình |
-| **Code quality** | Docstring đầy đủ cho mọi class và method, time complexity ghi chú rõ ràng |
+| Tiêu chí                | Đánh giá                                                                                      |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| **Sinh bản đồ tự động** | 100% bản đồ do máy tính sinh — không bản đồ nào giống nhau                                    |
+| **Đa dạng thuật toán**  | 6+ CTDL & giải thuật: BSP Tree, Graph, Union-Find, Kruskal MST, A*, BFS, Raycasting, Min-Heap |
+| **Enemy AI**            | Quái vật truy đuổi bằng A*, chuyển đổi giữa chase/wander mode                                 |
+| **Fog of War**          | Hệ thống tầm nhìn 3 trạng thái (visible/explored/hidden), không xuyên tường                   |
+| **Debug Visualization** | 3 chế độ xem trực quan thuật toán (F1, F2, F3)                                                |
+| **Gameplay**            | Di chuyển, chiến đấu, máu, bất tử, cầu thang qua tầng, permadeath                             |
+| **Hiệu năng**           | 60 FPS ổn định trên phần cứng trung bình                                                      |
+| **Code quality**        | Docstring đầy đủ cho mọi class và method, time complexity ghi chú rõ ràng                     |
 
 ### 3b. Kết quả định lượng
 
-| Chỉ số | Giá trị |
-|--------|---------|
-| **Số dòng code** | ~1,538 dòng (main.py) |
-| **Số class** | 11 (BSPNode, BSPTree, Graph, UnionFind, KruskalMST, AStar, FogOfWar, DungeonMap, Player, Enemy, DungeonCrawler) |
-| **Số method** | ~50+ (bao gồm cả static method) |
-| **Số thuật toán** | 6+ (BSP, Graph, Union-Find, Kruskal, A*, BFS, Raycasting) |
-| **Số CTDL** | 5 (Tree, Graph, Disjoint Set, Min-Heap, Grid) |
-| **FPS mục tiêu** | 60 FPS |
-| **Kích thước bản đồ** | 42 × 24 tiles (~1,008 ô) |
-| **Số phòng trung bình** | 15–25 phòng |
-| **Số enemy** | 3–5 enemy mỗi tầng |
+| Chỉ số                  | Giá trị                                                                                                         |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------- |
+| **Số dòng code**        | ~1,538 dòng (main.py)                                                                                           |
+| **Số class**            | 11 (BSPNode, BSPTree, Graph, UnionFind, KruskalMST, AStar, FogOfWar, DungeonMap, Player, Enemy, DungeonCrawler) |
+| **Số method**           | ~50+ (bao gồm cả static method)                                                                                 |
+| **Số thuật toán**       | 6+ (BSP, Graph, Union-Find, Kruskal, A*, BFS, Raycasting)                                                       |
+| **Số CTDL**             | 5 (Tree, Graph, Disjoint Set, Min-Heap, Grid)                                                                   |
+| **FPS mục tiêu**        | 60 FPS                                                                                                          |
+| **Kích thước bản đồ**   | 42 × 24 tiles (~1,008 ô)                                                                                        |
+| **Số phòng trung bình** | 15–25 phòng                                                                                                     |
+| **Số enemy**            | 3–5 enemy mỗi tầng                                                                                              |
 
 ### 3c. Các phím tắt và tính năng
 
-| Phím | Chức năng |
-|------|-----------|
-| **WASD / Arrow** | Di chuyển người chơi |
-| **F1** | Bật/tắt vẽ cạnh MST (Minimum Spanning Tree) |
-| **F2** | Bật/tắt vẽ ranh giới BSP (Binary Space Partitioning) |
-| **F3** | Bật/tắt vẽ đường đi A* của quái vật |
-| **R** | Chơi lại (khi game over) |
-| **ESC** | Thoát game |
+| Phím             | Chức năng                                            |
+| ---------------- | ---------------------------------------------------- |
+| **WASD / Arrow** | Di chuyển người chơi                                 |
+| **F1**           | Bật/tắt vẽ cạnh MST (Minimum Spanning Tree)          |
+| **F2**           | Bật/tắt vẽ ranh giới BSP (Binary Space Partitioning) |
+| **F3**           | Bật/tắt vẽ đường đi A* của quái vật                  |
+| **R**            | Chơi lại (khi game over)                             |
+| **ESC**          | Thoát game                                           |
 
 ---
 
@@ -641,17 +641,17 @@ dungeon_crawler/
 
 ### Giao diện người dùng
 
-![Bản đồ và gameplay](image.png)
-*Hình 1: Bản đồ dungeon được sinh tự động với Fog of War — vùng tối là chưa khám phá, vùng sáng là đang trong tầm nhìn.*
+![Bản đồ gameplay với Fog of War](image.png)
+*Hình 1: Bản đồ dungeon được sinh tự động — vùng sáng là tầm nhìn người chơi, vùng tối đã khám phá trước đó, vùng đen chưa từng thấy.*
 
-![Chế độ Debug MST](image-1.png)
-*Hình 2: Chế độ Debug F1 — các đường xanh thể hiện các cạnh của Minimum Spanning Tree (Kruskal) kết nối các phòng.*
+![Debug MST - Kruskal Algorithm](image-1.png)
+*Hình 2: Chế độ Debug F1 — các đường xanh nối giữa tâm các phòng thể hiện các cạnh của Minimum Spanning Tree (Kruskal), đảm bảo tổng chiều dài hành lang ngắn nhất.*
 
-![Chế độ Debug BSP](image-2.png)
-*Hình 3: Chế độ Debug F2 — các khung vàng thể hiện các node của cây BSP (Binary Space Partitioning).*
+![Debug BSP - Binary Space Partitioning](image-2.png)
+*Hình 3: Chế độ Debug F2 — các khung vàng thể hiện các node của cây BSP (Binary Space Partitioning) phân vùng bản đồ thành các phòng hình chữ nhật không chồng lấn.*
 
-![Chế độ Debug A* Pathfinding](image-3.png)
-*Hình 4: Chế độ Debug F3 — các đường hồng thể hiện đường đi A* của quái vật đến người chơi.*
+![Debug A* Pathfinding](image-3.png)
+*Hình 4: Chế độ Debug F3 — các đường hồng là đường đi A* từ quái vật đến người chơi, sử dụng hàng đợi ưu tiên (Min-Heap) và heuristic Manhattan.*
 
 ### Hướng dẫn demo nhanh
 
@@ -674,14 +674,14 @@ dungeon_crawler/
 
 ### Ảnh chụp màn hình (mô tả)
 
-| Màn hình | Mô tả |
-|----------|-------|
+| Màn hình      | Mô tả                                                                   |
+| ------------- | ----------------------------------------------------------------------- |
 | **Khởi động** | Bản đồ được sinh tự động, player ở phòng ngẫu nhiên, Fog of War bao phủ |
-| **Gameplay** | Player di chuyển, khám phá bản đồ, quái vật truy đuổi |
-| **F1 Debug** | Các đường xanh nối giữa tâm các phòng — trực quan hoá MST |
-| **F2 Debug** | Các hình chữ nhật vàng — các node BSP phân vùng bản đồ |
-| **F3 Debug** | Các đường hồng từ enemy đến player — đường đi A* |
-| **Game Over** | Màn hình GAME OVER, nhấn R để chơi lại |
+| **Gameplay**  | Player di chuyển, khám phá bản đồ, quái vật truy đuổi                   |
+| **F1 Debug**  | Các đường xanh nối giữa tâm các phòng — trực quan hoá MST               |
+| **F2 Debug**  | Các hình chữ nhật vàng — các node BSP phân vùng bản đồ                  |
+| **F3 Debug**  | Các đường hồng từ enemy đến player — đường đi A*                        |
+| **Game Over** | Màn hình GAME OVER, nhấn R để chơi lại                                  |
 
 ---
 
@@ -697,19 +697,19 @@ Tất cả các class và method trong `main.py` đều có docstring chi tiết
 
 ### Danh sách các class và số lượng docstring
 
-| Class | Số method | Mô tả |
-|-------|-----------|-------|
-| `BSPNode` | 5 | Node của cây BSP: split, create_room, get_leaves, get_all_rooms |
-| `BSPTree` | 3 | Quản lý cây BSP: build, get_rooms, get_leaves |
-| `Graph` | 5 | Đồ thị vô hướng: add_vertex, add_edge, get_edges, build_complete_from_rooms |
-| `UnionFind` | 2 | Disjoint Set: find (path compression), union (by rank) |
-| `KruskalMST` | 1 (static) | Thuật toán Kruskal tìm MST + loop |
-| `AStar` | 4 | A* pathfinding: heuristic, find_path, is_walkable, reconstruct_path |
-| `FogOfWar` | 3 | Tầm nhìn: compute_visibility, has_line_of_sight (Bresenham) |
-| `DungeonMap` | 5 | Pipeline sinh bản đồ: generate, carve_room, carve_corridor, remove_dead_ends |
-| `Player` | 5 | Người chơi: move, take_damage, get_tile_pos, get_pixel_rect |
-| `Enemy` | 4 | Quái vật: update, follow_path, push_away |
-| `DungeonCrawler` | 12 | Engine chính: init_level, handle_events, update, render, run |
+| Class            | Số method  | Mô tả                                                                        |
+| ---------------- | ---------- | ---------------------------------------------------------------------------- |
+| `BSPNode`        | 5          | Node của cây BSP: split, create_room, get_leaves, get_all_rooms              |
+| `BSPTree`        | 3          | Quản lý cây BSP: build, get_rooms, get_leaves                                |
+| `Graph`          | 5          | Đồ thị vô hướng: add_vertex, add_edge, get_edges, build_complete_from_rooms  |
+| `UnionFind`      | 2          | Disjoint Set: find (path compression), union (by rank)                       |
+| `KruskalMST`     | 1 (static) | Thuật toán Kruskal tìm MST + loop                                            |
+| `AStar`          | 4          | A* pathfinding: heuristic, find_path, is_walkable, reconstruct_path          |
+| `FogOfWar`       | 3          | Tầm nhìn: compute_visibility, has_line_of_sight (Bresenham)                  |
+| `DungeonMap`     | 5          | Pipeline sinh bản đồ: generate, carve_room, carve_corridor, remove_dead_ends |
+| `Player`         | 5          | Người chơi: move, take_damage, get_tile_pos, get_pixel_rect                  |
+| `Enemy`          | 4          | Quái vật: update, follow_path, push_away                                     |
+| `DungeonCrawler` | 12         | Engine chính: init_level, handle_events, update, render, run                 |
 
 ### Ví dụ docstring điển hình
 
@@ -769,7 +769,7 @@ Tôi cam kết:
 
 ---
 
-**Ngày hoàn thành:** ... tháng ... năm 2026  
+**Ngày hoàn thành:** 13 tháng 5 năm 2026  
 **Sinh viên thực hiện:** Nguyễn Tuấn Kiệt  
 **Mã số sinh viên:** 25520957  
 
