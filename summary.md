@@ -1,5 +1,7 @@
 # Dungeon Crawler 2D - Đồ án Cấu trúc Dữ liệu & Giải thuật
 
+**GitHub:** https://github.com/kietgoal/dungeon_crawler
+
 ## Tổng quan
 
 **Dungeon Crawler 2D** là một game nhập vai góc nhìn từ trên xuống (top-down) được viết bằng Python và thư viện Pygame. Điểm cốt lõi của đồ án là **Hệ thống Sinh Bản đồ Ngẫu nhiên (Procedural Map Generation)** và các thuật toán nền tảng của Khoa học Máy tính.

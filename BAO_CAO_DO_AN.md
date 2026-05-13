@@ -5,7 +5,8 @@
 **Lớp:** IT003.Q21.CTTN  
 **Mã sinh viên:** 25520957  
 **Họ và tên:** Nguyễn Tuấn Kiệt  
-**Năm học:** 2025–2026
+**Năm học:** 2025–2026  
+**GitHub:** https://github.com/kietgoal/dungeon_crawler
 
 ---
 
